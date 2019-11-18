@@ -36,4 +36,9 @@ public class StockPage extends BasePage{
         click(By.id("com.xueqiu.android:id/add_to_portfolio_stock"));
         return this;
     }
+
+    public SearchPage toSearch(){
+        click(By.id("com.xueqiu.android:id/action_search"));
+        return new SearchPage();
+    }
 }

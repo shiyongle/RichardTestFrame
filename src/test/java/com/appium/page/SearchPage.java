@@ -38,4 +38,13 @@ public class SearchPage extends BasePage {
         click(By.id("com.xueqiu.android:id/action_close"));
         return new App();
     }
+
+    /**
+     * 查询操作
+     * @return
+     */
+    public SearchPage select(){
+        click(By.id("com.xueqiu.android:id/follow_btn"));
+        return this;
+    }
 }

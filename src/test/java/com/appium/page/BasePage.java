@@ -55,6 +55,7 @@ public class BasePage {
         //TODO：不需要所有的都判断是否存在
         alertBoxs.add(By.id("com.xueqiu.android:id/image_cancel"));
         alertBoxs.add(tips);
+        alertBoxs.add(By.id("com.xueqiu.android:id/md_buttonDefaultNegative"));
 //        alertBoxs.add(By.xpath("ddd"));
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         alertBoxs.forEach(alert->{

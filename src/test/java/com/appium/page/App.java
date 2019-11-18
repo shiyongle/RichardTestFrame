@@ -36,6 +36,7 @@ public class App extends BasePage {
 
         driver = new AndroidDriver(remoteUrl, desiredCapabilities);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        //TODO:显式等待
         long start=System.currentTimeMillis();
         new WebDriverWait(driver, 40)
                 .until(x -> {
