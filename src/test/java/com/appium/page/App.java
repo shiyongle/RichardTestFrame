@@ -61,4 +61,8 @@ public class App extends BasePage {
 //        parseSteps("/app/page/app.yaml", "toSearch");
         return new SearchPage();
     }
+    public static StockPage toStocks(){
+        click(By.xpath("//*[contains(@resource-id,'tab_name') and @text='自选']"));
+        return new StockPage();
+    }
 }

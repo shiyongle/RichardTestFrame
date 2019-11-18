@@ -1,18 +1,22 @@
 package com.appium.page;
 
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author: Richered
  * @Date: 2019/11/16 23:20
  */
 public class BasePage {
-    public static AndroidDriver driver;
+    public static AndroidDriver<WebElement>  driver;
 
     public static WebElement findElement(By by){
         //TODO：递归是更好的
@@ -44,15 +48,30 @@ public class BasePage {
         List<By> alertBoxs = new ArrayList<>();
         //TODO：不需要所有的都判断是否存在
         alertBoxs.add(By.id("com.xueqiu.android:id/image_cancel"));
+        alertBoxs.add(By.id("com.xueqiu.android:id/snb_tip_text"));
 //        alertBoxs.add(By.xpath("ddd"));
-
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         alertBoxs.forEach(alert->{
-            By adsLocator = alert;
-            List<WebElement> ads=driver.findElements(adsLocator);
+            List<WebElement> ads=driver.findElements(alert);
+            //TODO:处理首页的更新弹窗
             if(ads.size()>=1){
                 ads.get(0).click();
             }
+            //TODO:处理第一次进入自选股页面的遮罩
+            if (alert.equals(By.id("com.xueqiu.android:id/snb_tip_text"))){
+                System.out.println("snb_tip found");
+                Dimension size = driver.manage().window().getSize();
+                try {
+                    new TouchAction(driver).tap(PointOption.point(size.width/2, size.height/2)).perform();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }finally {
+                    System.out.println("snb_tip click");
+                }
+
+            }
         });
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
     //TODO:处理多弹窗

@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 /**
  * @Author: Richered
  * @Date: 2019/11/16 23:24
+ * @Description：搜索paga
  */
 public class SearchPage extends BasePage {
     private By inputBox= By.id("com.xueqiu.android:id/search_input_text");
