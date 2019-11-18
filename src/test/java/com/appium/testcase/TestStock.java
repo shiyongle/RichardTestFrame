@@ -3,12 +3,18 @@ package com.appium.testcase;
 import com.appium.page.App;
 import com.appium.page.StockPage;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.net.MalformedURLException;
+import java.util.stream.Stream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.hasItem;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
  * @Author: Richered
@@ -39,9 +45,18 @@ public class TestStock {
     }
 
     @Order(2)
-    @Test
-    public void addStock(){
-        stockPage.toSearch().search("pdd").select().cancel();
-        assertThat(stockPage.getAllStocks(), hasItem("拼多多"));
+    @ParameterizedTest
+//    @ValueSource(strings = {"pdd","xiaomi"})
+    @MethodSource("data")
+    public void addStock(String code, String name){
+        stockPage.toSearch().search(code).select().cancel();
+        assertThat(stockPage.getAllStocks(), hasItem(name));
+    }
+
+    public static Stream<Arguments> data(){
+        return Stream.of(
+                arguments("pdd","拼多多"),
+                arguments("jd","京东")
+        );
     }
 }
