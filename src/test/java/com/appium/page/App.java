@@ -35,7 +35,7 @@ public class App extends BasePage {
         URL remoteUrl = new URL("http://127.0.0.1:4723/wd/hub");
 
         driver = new AndroidDriver(remoteUrl, desiredCapabilities);
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         long start=System.currentTimeMillis();
         new WebDriverWait(driver, 40)
                 .until(x -> {
@@ -62,7 +62,7 @@ public class App extends BasePage {
         return new SearchPage();
     }
     public static StockPage toStocks(){
-        click(By.xpath("//*[contains(@resource-id,'tab_name') and @text='自选']"));
+        click(By.xpath("//*[contains(@resource-id, 'tab_name') and @text='自选']"));
         return new StockPage();
     }
 }

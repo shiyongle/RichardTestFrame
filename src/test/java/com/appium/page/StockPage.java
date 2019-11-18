@@ -23,16 +23,17 @@ public class StockPage extends BasePage{
     }
 
     public List<String> getAllStocks(){
+        handleAlert();
         List<String> stocks = new ArrayList<>();
-        driver.findElements(By.id("com.xueqiu.android:id/protfolio_stockName")).forEach(element->{
-            stocks.add((element).getText());
+        driver.findElements(By.id("com.xueqiu.android:id/portfolio_stockName")).forEach(element->{
+            stocks.add(element.getText());
         });
         System.out.println(stocks);
         return stocks;
     }
 
     public StockPage addDefaultSelectedStocks(){
-        click(By.id("com.xueqiu.android:id/add_to_protfolio_stockName"));
+        click(By.id("com.xueqiu.android:id/add_to_portfolio_stock"));
         return this;
     }
 }
