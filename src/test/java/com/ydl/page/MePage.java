@@ -1,6 +1,5 @@
 package com.ydl.page;
 
-import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
 
 public class MePage extends BasePage{
