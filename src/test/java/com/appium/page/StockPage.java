@@ -14,11 +14,12 @@ import java.util.List;
 public class StockPage extends BasePage{
     //TODO:如自选股页面有股票则需要清空，调用该方法
     public StockPage deleteAll(){
-        click(By.id("com.xueqiu.android:id/edit_group"));
-        click(By.id("com.xueqiu.android:id/check_all"));
-        click(By.id("com.xueqiu.android:id/cancel_follow"));
-        click(By.id("com.xueqiu.android:id/md_buttonDefaultPositive"));
-        click(By.id("com.xueqiu.android:id/action_close"));
+//        click(By.id("com.xueqiu.android:id/edit_group"));
+//        click(By.id("com.xueqiu.android:id/check_all"));
+//        click(By.id("com.xueqiu.android:id/cancel_follow"));
+//        click(By.id("com.xueqiu.android:id/md_buttonDefaultPositive"));
+//        click(By.id("com.xueqiu.android:id/action_close"));
+        parseSteps("deleteAll");
         return this;
     }
 

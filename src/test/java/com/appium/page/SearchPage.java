@@ -10,15 +10,17 @@ import org.openqa.selenium.By;
  */
 public class SearchPage extends BasePage {
     private By inputBox= By.id("com.xueqiu.android:id/search_input_text");
-//    private By name=By.id("com.xueqiu.android:id/name");
+    private By name=By.id("com.xueqiu.android:id/name");
 
     public SearchPage search(String keyword){
 //        HashMap<String ,Object> data = new HashMap<>();
 //        data.put("keyword",keyword);
         //TODO：Test类传值
-        App.driver.findElement(inputBox).sendKeys(keyword);
+//        App.driver.findElement(inputBox).sendKeys(keyword);
         //TODO：点击搜索框下方的搜索结果
-        click(By.id("com.xueqiu.android:id/name"));
+//        click(By.id("com.xueqiu.android:id/name"));
+        //TODO:获取yaml数据
+        parseSteps("search");
         //TODO：点击“股票”模块【新版本需要模块的切换，老版本不需要】
         click(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.TextView"));
         return this;

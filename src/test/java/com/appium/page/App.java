@@ -1,7 +1,6 @@
 package com.appium.page;
 
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -58,12 +57,13 @@ public class App extends BasePage {
 
     public static SearchPage toSearch(){
         //TODO:进入首页
-        click(By.id("com.xueqiu.android:id/tv_search"));
-//        parseSteps("/app/page/app.yaml", "toSearch");
+//        click(By.id("com.xueqiu.android:id/tv_search"));
+        parseSteps("/com/appium/page/app.yaml", "toSearch");
         return new SearchPage();
     }
     public static StockPage toStocks(){
-        click(By.xpath("//*[contains(@resource-id, 'tab_name') and @text='自选']"));
+//        click(By.xpath("//*[contains(@resource-id, 'tab_name') and @text='自选']"));
+        parseSteps("/com/appium/page/app.yaml", "toStocks");
         return new StockPage();
     }
 }
