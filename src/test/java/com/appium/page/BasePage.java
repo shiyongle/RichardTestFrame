@@ -17,6 +17,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author Richered
+ * @Date:2019/11/20 23:54
+ * @Description:基类封装，异常、弹窗处理、测试步骤解析
+ */
 public class BasePage {
     public static AndroidDriver<WebElement> driver;
 
