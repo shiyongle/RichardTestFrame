@@ -3,6 +3,8 @@ package com.appium.page;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
 
+import java.util.HashMap;
+
 /**
  * @Author: Richered
  * @Date: 2019/11/16 23:24
@@ -13,12 +15,13 @@ public class SearchPage extends BasePage {
     private By name=By.id("com.xueqiu.android:id/name");
 
     public SearchPage search(String keyword){
-//        HashMap<String ,Object> data = new HashMap<>();
-//        data.put("keyword",keyword);
         //TODO：Test类传值
 //        App.driver.findElement(inputBox).sendKeys(keyword);
         //TODO：点击搜索框下方的搜索结果
 //        click(By.id("com.xueqiu.android:id/name"));
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("keyword",keyword);
+        setParams(data);
         //TODO:获取yaml数据
         parseSteps("search");
         //TODO：点击“股票”模块【新版本需要模块的切换，老版本不需要】
