@@ -10,8 +10,12 @@ import java.net.MalformedURLException;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.hasItem;
-
-public class LoginCase {
+/**
+ * @Author: Richered
+ * @Date: 2019/11/26 16:04
+ * Description: 登录用例
+ */
+public class TestLogin {
     public static MePage mePage;
 
     @BeforeAll
