@@ -26,6 +26,7 @@ import java.util.concurrent.TimeUnit;
 public class BasePage {
     public static AndroidDriver<WebElement> driver;
     private static HashMap<String,Object> params;
+    private static HashMap<String,Object> results = new HashMap<>();
 
     public HashMap<String,Object> getParams(){
         return params;
@@ -35,10 +36,13 @@ public class BasePage {
         this.params = params;
     }
 
-    public static WebElement findElement(By by) {
-        //todo: 递归是更好的
-        //todo: 如果定位的元素是动态变化位置
+    public static HashMap<String, Object> getResults(){
+        return results;
+    }
 
+    public static WebElement findElement(By by) {
+        //TODO: 递归是更好的
+        //TODO: 如果定位的元素是动态变化位置
         System.out.println(by);
         try {
             return driver.findElement(by);
@@ -50,8 +54,7 @@ public class BasePage {
     }
 
     public static void click(By by) {
-        //todo: 递归是更好的
-
+        //TODO: 递归是更好的
         System.out.println(by);
         try {
             driver.findElement(by).click();
@@ -70,7 +73,7 @@ public class BasePage {
     static void handleAlert() {
         By tips = By.id("com.xueqiu.android:id/snb_tip_text");
         List<By> alertBoxs = new ArrayList<>();
-        //todo: 不需要所有的都判断是否存在
+        //TODO: 不需要所有的都判断是否存在
         alertBoxs.add(By.id("com.xueqiu.android:id/image_cancel"));
         alertBoxs.add(tips);
         alertBoxs.add(By.id("com.xueqiu.android:id/md_buttonDefaultNegative"));
@@ -101,7 +104,7 @@ public class BasePage {
     }
 
     private static void handleAlertByPageSource() {
-        //todo: xpath匹配， 标记 定位
+        //TODO: xpath匹配， 标记 定位
         String xml = driver.getPageSource();
         List<String> alertBoxs = new ArrayList<>();
         alertBoxs.add("xxx");
@@ -145,13 +148,18 @@ public class BasePage {
         }
     }
 
+    public void parseSteps(){
+        String method=Thread.currentThread().getStackTrace()[2].getMethodName();
+        System.out.println(method);
+        parseSteps(method);
+    }
 
 
     private static void parseSteps(TestCaseSteps steps){
         steps.getSteps().forEach(step->{
             WebElement element = null;
 
-            //todo: 多个可能定位，多平台支持，多版本的支持
+            //TODO: 多个可能定位，多平台支持，多版本的支持
             String id=step.get("id");
             if(id!=null){
                 element=driver.findElement(By.id(id));
@@ -180,7 +188,8 @@ public class BasePage {
                 }
                 element.sendKeys(send);
             }else if(step.get("get")!=null){
-                element.getAttribute(step.get("get"));
+                String attribute=element.getAttribute(step.get("get"));
+                results.put(step.get("dump"), attribute);
             }else{
                 element.click();
             }

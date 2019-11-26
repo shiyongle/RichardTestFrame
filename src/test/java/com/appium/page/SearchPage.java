@@ -23,16 +23,17 @@ public class SearchPage extends BasePage {
         data.put("keyword",keyword);
         setParams(data);
         //TODO:获取yaml数据
-        parseSteps("search");
+        parseSteps();
         //TODO：点击“股票”模块【新版本需要模块的切换，老版本不需要】
         click(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.TextView"));
         return this;
     }
 
     public Float getCurrentPrice(){
-        MobileElement el4 = (MobileElement)findElement(By.id("com.xueqiu.android:id/current_price"));
+        parseSteps();
+//        MobileElement el4 = (MobileElement)findElement(By.id("com.xueqiu.android:id/current_price"));
 //        el4.click();
-        return Float.valueOf(el4.getText());
+        return Float.valueOf(getResults().get("price").toString());
     }
 
     /**
@@ -40,7 +41,8 @@ public class SearchPage extends BasePage {
      * @return app首页
      */
     public App cancel(){
-        click(By.id("com.xueqiu.android:id/action_close"));
+//        click(By.id("com.xueqiu.android:id/action_close"));
+        parseSteps();
         return new App();
     }
 
@@ -49,7 +51,8 @@ public class SearchPage extends BasePage {
      * @return
      */
     public SearchPage select(){
-        click(By.id("com.xueqiu.android:id/follow_btn"));
+//        click(By.id("com.xueqiu.android:id/follow_btn"));
+        parseSteps();
         return this;
     }
 }
