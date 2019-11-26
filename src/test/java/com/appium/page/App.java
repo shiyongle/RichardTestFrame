@@ -13,15 +13,15 @@ import java.util.concurrent.TimeUnit;
  * @Date: 2019/11/16 23:10
  */
 public class App extends BasePage {
-//    private static App app;
-//    public static App getInstance(){
-//        if (app == null){
-//            app = new App();
-//        }
-//        return app;
-//    }
+    private static App app;
+    public static App getInstance(){
+        if (app == null){
+            app = new App();
+        }
+        return app;
+    }
 
-    public static void start() throws MalformedURLException {
+    public void start() throws MalformedURLException {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability("platformName", "android");
         desiredCapabilities.setCapability("deviceName", "127.0.0.1:7555");
@@ -55,13 +55,13 @@ public class App extends BasePage {
 //        }
     }
 
-    public static SearchPage toSearch(){
+    public SearchPage toSearch(){
         //TODO:进入首页
 //        click(By.id("com.xueqiu.android:id/tv_search"));
         parseSteps("/com/appium/page/app.yaml", "toSearch");
         return new SearchPage();
     }
-    public static StockPage toStocks(){
+    public StockPage toStocks(){
 //        click(By.xpath("//*[contains(@resource-id, 'tab_name') and @text='自选']"));
         parseSteps("/com/appium/page/app.yaml", "toStocks");
         return new StockPage();

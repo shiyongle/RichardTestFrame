@@ -30,7 +30,7 @@ public class TestSearch {
 
     @BeforeClass
     public static void beforeAll() throws MalformedURLException{
-        App.start();
+        App.getInstance().start();
     }
 
     @Parameterized.Parameters
@@ -62,7 +62,7 @@ public class TestSearch {
 
     @Before
     public void before(){
-        searchPage = App.toSearch();
+        searchPage = App.getInstance().toSearch();
     }
 
     @Test

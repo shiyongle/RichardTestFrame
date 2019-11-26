@@ -8,7 +8,7 @@ import java.util.List;
  * @Date: 2019/11/20 23:56
  * @Description:
  */
-public class TestCaseSteps {
+public class PageObjectMethod {
     private List<HashMap<String, String>> steps;
 
     public List<HashMap<String, String>> getSteps() {

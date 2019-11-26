@@ -1,7 +1,15 @@
-toSearch:
-  steps:
-    - id: home_search
+methods:
+  toSearch:
+    steps:
+      #    - element: search_input
+      - id: home_search
+  #    - locator: [ id: xxx, xpath: ddd ]
 
-toStocks:
-  steps:
-    - xpath: "//*[contains(@resource-id, 'tab_name') and @text='自选']"
+  #elements:
+  #  search_input:
+  #    id: home_search
+  #    locator: [ id: xxx, xpath: ddd ]
+
+  toStocks:
+    steps:
+      - xpath: "//*[contains(@resource-id, 'tab_name') and @text='自选']"

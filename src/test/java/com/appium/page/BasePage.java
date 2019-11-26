@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 /**
  * @author Richered
@@ -25,21 +26,28 @@ import java.util.concurrent.TimeUnit;
  */
 public class BasePage {
     public static AndroidDriver<WebElement> driver;
+
+    private PageObjectModel model=new PageObjectModel();
+
     private static HashMap<String,Object> params;
+
     private static HashMap<String,Object> results = new HashMap<>();
 
-    public HashMap<String,Object> getParams(){
-        return params;
-    }
-
+    //TODO:测试步骤参数化
     public void setParams(HashMap<String,Object> params){
         this.params = params;
     }
 
+    public static HashMap<String, Object> getParams() {
+        return params;
+    }
+
+    //TODO:测试结果读取
     public static HashMap<String, Object> getResults(){
         return results;
     }
 
+    //TODO:通用元素定位与异常处理机制
     public static WebElement findElement(By by) {
         //TODO: 递归是更好的
         //TODO: 如果定位的元素是动态变化位置
@@ -60,7 +68,6 @@ public class BasePage {
             driver.findElement(by).click();
         } catch (Exception e) {
             handleAlert();
-
             driver.findElement(by).click();
         }
     }
@@ -118,44 +125,34 @@ public class BasePage {
 
     }
 
-    public void parseSteps(String method) {
-//        HashMap<String, List<HashMap<String, String>>> 可以取消steps的多余关键字
-        //TODO: 参数化，把关键数据参数化到你的yaml中
-        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        String path = "/" + this.getClass().getCanonicalName().replace('.', '/') + ".yaml";
-        TypeReference<HashMap<String, TestCaseSteps>> typeRef = new TypeReference<HashMap<String, TestCaseSteps>>() {
-        };
-        try {
-            HashMap<String, TestCaseSteps> steps = mapper.readValue(
-                    this.getClass().getResourceAsStream(path), typeRef
-            );
-            parseSteps(steps.get(method));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public static void parseSteps(String path, String method){
-        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        TypeReference<HashMap<String, TestCaseSteps>> typeRef = new TypeReference<HashMap<String, TestCaseSteps>>() {
-        };
-        try {
-            HashMap<String, TestCaseSteps> steps = mapper.readValue(
-                    BasePage.class.getResourceAsStream(path), typeRef
-            );
-            parseSteps(steps.get(method));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void parseSteps(){
         String method=Thread.currentThread().getStackTrace()[2].getMethodName();
         System.out.println(method);
         parseSteps(method);
     }
+    public void parseSteps(String method) {
+//        HashMap<String, List<HashMap<String, String>>> 可以取消steps的多余关键字
+        //TODO: 参数化，把关键数据参数化到你的yaml中
+
+        String path = "/" + this.getClass().getCanonicalName().replace('.', '/') + ".yaml";
+        parseSteps(path, method);
+    }
+    public void parseSteps(String path, String method){
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+//        TypeReference<HashMap<String, PageObjectMethod>> typeRef = new TypeReference<HashMap<String, PageObjectMethod>>() {
+//        };
+        try {
+            model = mapper.readValue(
+                    BasePage.class.getResourceAsStream(path), PageObjectModel.class
+            );
+            parseSteps(model.methods.get(method));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
-    private static void parseSteps(TestCaseSteps steps){
+    private void parseSteps(PageObjectMethod steps){
         steps.getSteps().forEach(step->{
             WebElement element = null;
 
@@ -163,20 +160,21 @@ public class BasePage {
             String id=step.get("id");
             if(id!=null){
                 element=driver.findElement(By.id(id));
-            }
-
-            String xpath=step.get("xpath");
-            if(xpath!=null){
-                element=driver.findElement(By.xpath(xpath));
-            }
-
-            String aid=step.get("aid");
-            if(aid!=null){
-                element=driver.findElement(MobileBy.AccessibilityId(aid));
+            }else if(step.get("xpath")!=null){
+                element=driver.findElement(By.xpath(step.get("xpath")));
+            }else if(step.get("aid")!=null){
+                element=driver.findElement(MobileBy.AccessibilityId(step.get("aid")));
+            }else if(step.get("element")!=null){
+                element=driver.findElement(model.elements.get(step.get("element")).getLocator());
             }
 
             String send=step.get("send");
-//            send.replaceAll("{.*}", "dd")
+//            params.entrySet().forEach(kv->{
+//                send=send.replace("{"+ kv.getKey() +"}", kv.getValue().toString());
+//            });
+
+
+
             if(send!=null){
                 //配置文件中的参数替换
                 for(Map.Entry<String, Object> kv: params.entrySet()){
@@ -187,9 +185,11 @@ public class BasePage {
                     }
                 }
                 element.sendKeys(send);
+
             }else if(step.get("get")!=null){
                 String attribute=element.getAttribute(step.get("get"));
-                results.put(step.get("dump"), attribute);
+                getResults().put(step.get("dump"), attribute);
+
             }else{
                 element.click();
             }

@@ -2,7 +2,7 @@ package com.unit;
 
 import com.appium.page.App;
 import com.appium.page.BasePage;
-import com.appium.page.TestCaseSteps;
+import com.appium.page.PageObjectMethod;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
@@ -23,8 +23,8 @@ public class TestSteps {
 
     @Test
     public void steps() throws JsonProcessingException {
-        HashMap<String, TestCaseSteps> testcase = new HashMap<String, TestCaseSteps>();
-        TestCaseSteps testcaseStep =new TestCaseSteps();
+        HashMap<String, PageObjectMethod> testcase = new HashMap<String, PageObjectMethod>();
+        PageObjectMethod testcaseStep =new PageObjectMethod();
         List<HashMap<String, String>> steps=new ArrayList<>();
 
         HashMap<String, String> map=new HashMap<>();
@@ -42,7 +42,7 @@ public class TestSteps {
     }
     @Test
     public void parseSteps() throws MalformedURLException {
-        App.start();
+        App.getInstance().start();
         BasePage basePage=new BasePage();
 //        basePage.parseSteps("search");
         basePage.parseSteps("/com/appium/page/app.yaml","toSearch");

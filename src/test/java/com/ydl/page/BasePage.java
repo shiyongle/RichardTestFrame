@@ -1,7 +1,7 @@
 package com.ydl.page;
 
 
-import com.appium.page.TestCaseSteps;
+import com.appium.page.PageObjectMethod;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
@@ -63,10 +63,10 @@ public class BasePage {
         //TODO: 参数化，把关键数据参数化到你的yaml中
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         String path = "/" + this.getClass().getCanonicalName().replace('.', '/') + ".yaml";
-        TypeReference<HashMap<String, com.appium.page.TestCaseSteps>> typeRef = new TypeReference<HashMap<String, com.appium.page.TestCaseSteps>>() {
+        TypeReference<HashMap<String, PageObjectMethod>> typeRef = new TypeReference<HashMap<String, PageObjectMethod>>() {
         };
         try {
-            HashMap<String, com.appium.page.TestCaseSteps> steps = mapper.readValue(
+            HashMap<String, PageObjectMethod> steps = mapper.readValue(
                     this.getClass().getResourceAsStream(path), typeRef
             );
             parseSteps(steps.get(method));
@@ -76,10 +76,10 @@ public class BasePage {
     }
     public static void parseSteps(String path, String method){
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        TypeReference<HashMap<String, com.appium.page.TestCaseSteps>> typeRef = new TypeReference<HashMap<String, com.appium.page.TestCaseSteps>>() {
+        TypeReference<HashMap<String, PageObjectMethod>> typeRef = new TypeReference<HashMap<String, PageObjectMethod>>() {
         };
         try {
-            HashMap<String, com.appium.page.TestCaseSteps> steps = mapper.readValue(
+            HashMap<String, PageObjectMethod> steps = mapper.readValue(
                     com.appium.page.BasePage.class.getResourceAsStream(path), typeRef
             );
             parseSteps(steps.get(method));
@@ -90,7 +90,7 @@ public class BasePage {
 
 
 
-    private static void parseSteps(TestCaseSteps steps){
+    private static void parseSteps(PageObjectMethod steps){
         steps.getSteps().forEach(step->{
             WebElement element = null;
 

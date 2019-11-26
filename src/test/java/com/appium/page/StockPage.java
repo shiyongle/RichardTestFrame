@@ -19,7 +19,7 @@ public class StockPage extends BasePage{
 //        click(By.id("com.xueqiu.android:id/cancel_follow"));
 //        click(By.id("com.xueqiu.android:id/md_buttonDefaultPositive"));
 //        click(By.id("com.xueqiu.android:id/action_close"));
-        parseSteps("deleteAll");
+        parseSteps();
         return this;
     }
 
