@@ -1,6 +1,5 @@
 package com.appium.page;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import io.appium.java_client.MobileBy;
@@ -10,6 +9,8 @@ import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
 /**
  * @author Richered
@@ -26,6 +26,8 @@ import java.util.logging.Logger;
  */
 public class BasePage {
     public static AndroidDriver<WebElement> driver;
+
+    private static final Logger logger = LoggerFactory.getLogger(BasePage.class);
 
     private PageObjectModel model=new PageObjectModel();
 
@@ -51,19 +53,18 @@ public class BasePage {
     public static WebElement findElement(By by) {
         //TODO: 递归是更好的
         //TODO: 如果定位的元素是动态变化位置
-        System.out.println(by);
+        logger.info("findElement by:",by);
         try {
             return driver.findElement(by);
         } catch (Exception e) {
             handleAlert();
-
             return driver.findElement(by);
         }
     }
 
     public static void click(By by) {
         //TODO: 递归是更好的
-        System.out.println(by);
+        logger.info("click by:",by);
         try {
             driver.findElement(by).click();
         } catch (Exception e) {
@@ -73,7 +74,7 @@ public class BasePage {
     }
 
     public static List<WebElement> findElements(By by) {
-        System.out.println(by);
+        logger.info("findElements by:",by);
         return driver.findElements(by);
     }
 
@@ -91,7 +92,7 @@ public class BasePage {
             List<WebElement> ads = driver.findElements(alert);
 
             if (alert.equals(tips)) {
-                System.out.println("snb_tip found");
+                logger.info("snb_tip found");
                 Dimension size = driver.manage().window().getSize();
                 try {
                     if (driver.findElements(tips).size() >= 1) {
@@ -101,7 +102,7 @@ public class BasePage {
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
-                    System.out.println("snb_tip clicked");
+                    logger.info("snb_tip clicked");
                 }
             } else if (ads.size() >= 1) {
                 ads.get(0).click();
@@ -127,13 +128,12 @@ public class BasePage {
 
     public void parseSteps(){
         String method=Thread.currentThread().getStackTrace()[2].getMethodName();
-        System.out.println(method);
+        logger.info("method:",method);
         parseSteps(method);
     }
     public void parseSteps(String method) {
 //        HashMap<String, List<HashMap<String, String>>> 可以取消steps的多余关键字
         //TODO: 参数化，把关键数据参数化到你的yaml中
-
         String path = "/" + this.getClass().getCanonicalName().replace('.', '/') + ".yaml";
         parseSteps(path, method);
     }
