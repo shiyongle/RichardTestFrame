@@ -53,7 +53,7 @@ public class BasePage {
     public static WebElement findElement(By by) {
         //TODO: 递归是更好的
         //TODO: 如果定位的元素是动态变化位置
-        logger.info("findElement by:",by);
+        logger.info("findElement by: " + by);
         try {
             return driver.findElement(by);
         } catch (Exception e) {
@@ -64,7 +64,7 @@ public class BasePage {
 
     public static void click(By by) {
         //TODO: 递归是更好的
-        logger.info("click by:",by);
+        logger.info("click by : " + by);
         try {
             driver.findElement(by).click();
         } catch (Exception e) {
@@ -74,7 +74,7 @@ public class BasePage {
     }
 
     public static List<WebElement> findElements(By by) {
-        logger.info("findElements by:",by);
+        logger.info("findElements by :" + by);
         return driver.findElements(by);
     }
 
@@ -128,7 +128,7 @@ public class BasePage {
 
     public void parseSteps(){
         String method=Thread.currentThread().getStackTrace()[2].getMethodName();
-        logger.info("method:",method);
+        logger.info("method : " + method);
         parseSteps(method);
     }
     public void parseSteps(String method) {
@@ -180,7 +180,7 @@ public class BasePage {
                 for(Map.Entry<String, Object> kv: params.entrySet()){
                     String matcher="${"+kv.getKey()+"}";
                     if(send.contains(matcher)) {
-                        System.out.println(kv);
+                        logger.info("kv : " + kv);
                         send = send.replace(matcher, kv.getValue().toString());
                     }
                 }
