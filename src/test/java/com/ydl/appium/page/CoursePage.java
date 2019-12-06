@@ -1,6 +1,4 @@
-package com.ydl.page;
-
-import org.openqa.selenium.By;
+package com.ydl.appium.page;
 
 /**
  * @Author: Richered

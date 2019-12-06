@@ -1,9 +1,8 @@
-package com.ydl.testcase;
+package com.ydl.appium.testcase;
 
-import com.ydl.page.App;
-import com.ydl.page.CoursePage;
+import com.ydl.appium.page.App;
+import com.ydl.appium.page.CoursePage;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 
 import java.net.MalformedURLException;
 

@@ -1,4 +1,4 @@
-package com.ydl.page;
+package com.ydl.appium.page;
 
 import java.util.HashMap;
 import java.util.List;

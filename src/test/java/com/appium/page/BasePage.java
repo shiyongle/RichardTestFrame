@@ -92,17 +92,16 @@ public class BasePage {
             List<WebElement> ads = driver.findElements(alert);
 
             if (alert.equals(tips)) {
-                logger.info("snb_tip found");
+                logger.info("----snb_tip found----");
                 Dimension size = driver.manage().window().getSize();
                 try {
                     if (driver.findElements(tips).size() >= 1) {
                         new TouchAction(driver).tap(PointOption.point(size.width / 2, size.height / 2)).perform();
                     }
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
-                    logger.info("snb_tip clicked");
+                    logger.info("----snb_tip clicked----");
                 }
             } else if (ads.size() >= 1) {
                 ads.get(0).click();

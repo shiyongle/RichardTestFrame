@@ -23,9 +23,9 @@ public class LocalInterface {
                 .queryParam("username","Richered")
                 .header("Cookie","Custom Cookie")
 //                .formParam("username","Richered")
-                .when()
+        .when()
                 .post("http://localhost:8000/CGIProject/cgi-bin/")
-                .then()
+        .then()
                 .statusCode(200);
     }
 

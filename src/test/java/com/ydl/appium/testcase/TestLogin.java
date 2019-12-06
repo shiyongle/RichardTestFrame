@@ -1,14 +1,13 @@
-package com.ydl.testcase;
+package com.ydl.appium.testcase;
 
-import com.ydl.page.App;
-import com.ydl.page.MePage;
+import com.ydl.appium.page.App;
+import com.ydl.appium.page.MePage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.net.MalformedURLException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.hasItem;
 /**
  * @Author: Richered

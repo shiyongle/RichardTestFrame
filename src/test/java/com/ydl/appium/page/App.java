@@ -1,9 +1,8 @@
-package com.ydl.page;
+package com.ydl.appium.page;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -16,6 +15,9 @@ public class App extends BasePage{
         desiredCapabilities.setCapability("platformName", "android");
         desiredCapabilities.setCapability("deviceName", "127.0.0.1:7555");
         desiredCapabilities.setCapability("platformVersion", "6.0.1");
+        //HuaWei Mate9
+//        desiredCapabilities.setCapability("deviceName","huawei");
+//        desiredCapabilities.setCapability("platformVersion", "9.0.1");
         desiredCapabilities.setCapability("appPackage","com.cxzapp.yidianling");
         desiredCapabilities.setCapability("appActivity",".splash.SplashActivity");
         desiredCapabilities.setCapability("noReset",true);
@@ -78,5 +80,10 @@ public class App extends BasePage{
     public static InformationPage toInformationPage(){
         click(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout[4]/android.widget.LinearLayout/android.widget.ImageView"));
         return new InformationPage();
+    }
+
+    public static SearchPage toSearchPage(){
+        click(By.id("com.cxzapp.yidianling:id/home_tv"));
+        return new SearchPage();
     }
 }

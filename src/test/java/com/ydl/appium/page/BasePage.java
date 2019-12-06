@@ -1,4 +1,4 @@
-package com.ydl.page;
+package com.ydl.appium.page;
 
 
 import com.appium.page.PageObjectMethod;
@@ -9,6 +9,8 @@ import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -16,6 +18,8 @@ import java.util.Map;
 
 public class BasePage {
     public static AndroidDriver<WebElement> driver;
+
+    private static final Logger logger = LoggerFactory.getLogger(BasePage.class);
 
     private static HashMap<String,Object> params;
 
@@ -28,7 +32,7 @@ public class BasePage {
     }
 
     public static WebElement findEelement(By by){
-        System.out.println(by);
+        logger.info("by" + by);
         try {
             return driver.findElement(by);
         }catch (Exception e){
@@ -40,7 +44,7 @@ public class BasePage {
     public static void click(By by){
         //TODO：递归是更好的
         //TODO:处理异常弹窗，此处特处理低版本更新弹窗
-        System.out.println(by);
+        logger.info("by" + by);
         try {
             driver.findElement(by).click();
         }catch (Exception e){
@@ -117,7 +121,7 @@ public class BasePage {
                 for(Map.Entry<String, Object> kv: params.entrySet()){
                     String matcher="${"+kv.getKey()+"}";
                     if(send.contains(matcher)) {
-                        System.out.println(kv);
+                        logger.info("kv" + kv);
                         send = send.replace(matcher, kv.getValue().toString());
                     }
                 }

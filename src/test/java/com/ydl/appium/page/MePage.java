@@ -1,8 +1,6 @@
-package com.ydl.page;
+package com.ydl.appium.page;
 
 import org.openqa.selenium.By;
-
-import java.util.HashMap;
 
 public class MePage extends BasePage{
 
