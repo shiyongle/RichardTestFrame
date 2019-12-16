@@ -184,15 +184,12 @@ public class BasePage {
                     }
                 }
                 element.sendKeys(send);
-
             }else if(step.get("get")!=null){
                 String attribute=element.getAttribute(step.get("get"));
                 getResults().put(step.get("dump"), attribute);
-
             }else{
                 element.click();
             }
-
         });
     }
 }
