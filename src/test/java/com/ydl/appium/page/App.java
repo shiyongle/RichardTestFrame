@@ -82,6 +82,7 @@ public class App extends BasePage{
         return new InformationPage();
     }
 
+    //TODO:搜索模块
     public static SearchPage toSearchPage(){
         click(By.id("com.cxzapp.yidianling:id/home_tv"));
         return new SearchPage();
