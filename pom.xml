@@ -10,8 +10,6 @@
     <properties>
         <docker.image.prefix>RichardTestFrame</docker.image.prefix>
         <aspectj.version>1.8.10</aspectj.version>
-        <!-- 解决mvn编译乱码问题-->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <build>
         <plugins>
@@ -56,15 +54,23 @@
                     </resources>
                 </configuration>
             </plugin>
+            <!-- Docker maven plugin -->
             <!-- Allure maven plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.20</version>
                 <configuration>
+                    <testFailureIgnore>false</testFailureIgnore>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>io.qameta.allure.junit4.AllureJunit4</value>
+                        </property>
+                    </properties>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -74,35 +80,15 @@
                     </dependency>
                 </dependencies>
             </plugin>
-            <!-- 添加插件,添加ReportNg的监听器，修改最后的TestNg的报告 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.5</version>
-                <configuration>
-                    <properties>
-                        <property>
-                            <name>usedefaultlisteners</name>
-                            <value>false</value>
-                        </property>
-                        <property>
-                            <name>listener</name>
-                            <value>org.uncommons.reportng.HTMLReporter,org.uncommons.reportng.JUnitXMLReporter</value>
-                        </property>
-                    </properties>
-                    <workingDirectory>target/</workingDirectory>
-                    <forkMode>always</forkMode>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
     <dependencies>
         <!--<dependency>-->
-            <!--<groupId>junit</groupId>-->
-            <!--<artifactId>junit</artifactId>-->
-            <!--<version>4.12</version>-->
-            <!--<scope>test</scope>-->
+        <!--<groupId>junit</groupId>-->
+        <!--<artifactId>junit</artifactId>-->
+        <!--<version>4.12</version>-->
+        <!--<scope>test</scope>-->
         <!--</dependency>-->
         <dependency>
             <groupId>org.junit.platform</groupId>
@@ -196,11 +182,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.fudaa</groupId>
-            <artifactId>jep</artifactId>
-            <version>2.4.2</version>
-        </dependency>
-        <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit4</artifactId>
             <version>2.13.1</version>
@@ -210,43 +191,6 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.11</version>
-        </dependency>
-        <!-- 依赖reportNg 关联testNg-->
-        <dependency>
-            <groupId>org.uncommons</groupId>
-            <artifactId>reportng</artifactId>
-            <version>1.1.4</version>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.testng</groupId>
-                    <artifactId>testng</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>2.13.1</version>
-            <scope>test</scope>
-        </dependency>
-<!--        report-ng-->
-        <dependency>
-            <groupId>org.uncommons</groupId>
-            <artifactId>reportng</artifactId>
-            <version>1.1.4</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.testng</groupId>
-                    <artifactId>testng</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-            <version>4.0-beta5</version>
         </dependency>
     </dependencies>
 
