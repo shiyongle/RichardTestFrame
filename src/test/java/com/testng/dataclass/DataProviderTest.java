@@ -1,6 +1,6 @@
 package com.testng.dataclass;
 
-import org.testng.annotations.DataProvider;
+//import org.testng.annotations.DataProvider;
 
 /**
  * @Author: Richered
@@ -8,7 +8,7 @@ import org.testng.annotations.DataProvider;
  * Description:dataProvider方式:返回数据类型必须为Object[][]，或者Iterator<Object[]>
  */
 public class DataProviderTest {
-    @DataProvider(name = "DataProviderTest")
+//    @DataProvider(name = "DataProviderTest")
     public Object[][] Datatest(){
         return new Object[][]{
                 {"username","shiyongle"}

@@ -2,7 +2,7 @@ package com.testng.dataclass;
 
 
 import io.qameta.allure.*;
-import org.testng.annotations.Test;
+//import org.testng.annotations.Test;
 //import ru.yandex.qatools.allure.annotations.Title;
 
 import java.io.IOException;
@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 
 import static java.lang.String.format;
 import static java.nio.file.Files.readAllBytes;
-import static org.testng.Assert.fail;
+//import static org.testng.Assert.fail;
 
 /**
  * @Author: Richered
@@ -40,7 +40,7 @@ public class TestNgDataClass {
     @Link("")
     @Severity(SeverityLevel.TRIVIAL)
     @Attachment(value = "附件",type = "properties")
-    @Test(dataProvider = "DataProviderTest",dataProviderClass = DataProviderTest.class)
+//    @Test(dataProvider = "DataProviderTest",dataProviderClass = DataProviderTest.class)
     public byte[] test(String name1, String name2, String name3)throws IOException, URISyntaxException {
         System.out.println(name1 + "," + name2 + "," + name3);
         return getSampleFile("allure.properties");
@@ -57,7 +57,7 @@ public class TestNgDataClass {
     private byte[] getSampleFile(String fileName) throws URISyntaxException, IOException {
         URL resource = getClass().getClassLoader().getResource(fileName);
         if(resource == null){
-            fail(format("Couldn't find resource '%s'", fileName));
+//            fail(format("Couldn't find resource '%s'", fileName));
         }
 
         return readAllBytes(Paths.get(resource.toURI()));
