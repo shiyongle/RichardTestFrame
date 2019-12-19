@@ -1,0 +1,5 @@
+<test name="testDataProvider">
+    <classes>
+        <class name="com.testng.dataclass.TestNgDataClass" />
+    </classes>
+</test>
