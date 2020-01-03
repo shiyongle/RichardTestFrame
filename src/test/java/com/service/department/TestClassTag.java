@@ -1,4 +1,4 @@
-package com.service.Tag;
+package com.service.department;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeAll;
@@ -109,6 +109,22 @@ public class TestClassTag {
                 .log().all()
                 .get("https://qyapi.weixin.qq.com/cgi-bin/tag/list")
         .then()
+                .log().all()
+                .body("errcode", equalTo(0));
+    }
+
+    /**
+     * 获取标签成员列表
+     */
+    @Test
+    public void listTagUser(){
+        given()
+                .queryParam("access_token", token)
+                .queryParam("tagid", 1)
+                .when()
+                .log().all()
+                .get("https://qyapi.weixin.qq.com/cgi-bin/tag/get")
+                .then()
                 .log().all()
                 .body("errcode", equalTo(0));
     }

@@ -1,4 +1,4 @@
-package com.service.Tag.api;
+package com.service.department.api;
 
 import com.service.Work;
 import io.restassured.http.ContentType;
@@ -13,10 +13,10 @@ import static org.hamcrest.CoreMatchers.equalTo;
 /**
  * @Author: Richered
  * @Date: 2020/1/3 22:08
- * @Description:
+ * @Description: 标签部分interface
  */
 public class Tag {
-    
+
     /**
      * 创建标签
      * @param tagname

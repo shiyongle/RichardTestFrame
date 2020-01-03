@@ -1,6 +1,6 @@
-package com.service.Tag.testcase;
+package com.service.department.testcase;
 
-import com.service.Tag.api.Tag;
+import com.service.department.api.Tag;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 /**
  * @Author: Richered
  * @Date: 2020/1/3 22:09
- * @Description:
+ * @Description: 标签用例
  */
 public class TestTag {
 
