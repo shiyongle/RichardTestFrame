@@ -1,4 +1,4 @@
-package com.service;
+package com.service.department;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,7 +15,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
  * @Date: 2020/1/2 22:45
  * @Description:接口测试第一节
  */
-public class TestWord {
+public class TestClassictDepart {
 
     static String token;
     static int parentDepartId = 2;      //父级部门id

@@ -69,4 +69,20 @@ public class Department {
     public Response create(String name){
         return create(name, parentDepartId);
     }
+
+    /**
+     * 删除操作
+     * @param id
+     * @return
+     */
+    public Response delete(int id){
+        return given()
+                .queryParam("access_token", Work.getInstance().getToken())
+                .queryParam("id", id)
+        .when().log().all()
+                .get("https://qyapi.weixin.qq.com/cgi-bin/department/delete")
+        .then().log().all()
+                .body("errcode", equalTo(0))
+        .extract().response();
+    }
 }
