@@ -1,5 +1,7 @@
 package com.service.department;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -125,6 +127,78 @@ public class TestClassTag {
                 .log().all()
                 .get("https://qyapi.weixin.qq.com/cgi-bin/tag/get")
                 .then()
+                .log().all()
+                .body("errcode", equalTo(0));
+    }
+
+
+    /**
+     * 添加标签成员
+     */
+    @Test
+    public void addTagUser(){
+        JSONObject jsonObject = new JSONObject();
+        JSONArray bean1 = new JSONArray();
+        JSONArray bean2 = new JSONArray();
+
+        String user1 = "user1";
+        String user2 = "user2";
+        bean1.add(user1);
+        bean1.add(user2);
+
+        /**parylist是企业部门id**/
+        int parylist = 3;
+        bean2.add(parylist);
+
+
+        jsonObject.put("userlist",bean1);
+        jsonObject.put("partylist",bean2);
+        jsonObject.put("tagid",1);
+        System.out.println(jsonObject);
+
+        given()
+                .queryParam("access_token", token)
+                .contentType(ContentType.JSON)
+                .body(jsonObject)
+        .when()
+                .log().all()
+                .post("https://qyapi.weixin.qq.com/cgi-bin/tag/addtagusers")
+        .then()
+                .log().all()
+                .body("errcode", equalTo(0));
+    }
+
+    /**
+     * 删除标签成员
+     */
+    @Test
+    public void deleteTagUser(){
+        JSONObject jsonObject = new JSONObject();
+        JSONArray bean1 = new JSONArray();
+        JSONArray bean2 = new JSONArray();
+
+        String user1 = "user1";
+        String user2 = "user2";
+        bean1.add(user1);
+        bean1.add(user2);
+
+        /**parylist是企业部门id**/
+        int parylist = 3;
+        bean2.add(parylist);
+
+        jsonObject.put("tagid",1);
+        jsonObject.put("userlist",bean1);
+        jsonObject.put("partylist",bean2);
+        System.out.println(jsonObject);
+
+        given()
+                .queryParam("access_token", token)
+                .contentType(ContentType.JSON)
+                .body(jsonObject)
+        .when()
+                .log().all()
+                .post("https://qyapi.weixin.qq.com/cgi-bin/tag/deltagusers")
+        .then()
                 .log().all()
                 .body("errcode", equalTo(0));
     }
