@@ -124,6 +124,9 @@ public class Tag {
         JSONArray bean1 = new JSONArray();
         JSONArray bean2 = new JSONArray();
 
+        /**
+         * bean为数组
+         */
         String user1 = "user1";
         String user2 = "user2";
         bean1.add(user1);
@@ -160,7 +163,9 @@ public class Tag {
         JSONObject jsonObject = new JSONObject();
         JSONArray bean1 = new JSONArray();
         JSONArray bean2 = new JSONArray();
-
+        /**
+         * bean为数组
+         */
         String user1 = "user1";
         String user2 = "user2";
         bean1.add(user1);
