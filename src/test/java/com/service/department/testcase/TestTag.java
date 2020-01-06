@@ -40,4 +40,19 @@ public class TestTag {
     public void list(){
         tag.listTag().then().body("errcode", equalTo(0));
     }
+
+    @Test
+    public void addUser(){
+        tag.addTagUser().then().body("errcode", equalTo(0));
+    }
+
+    @Test
+    public void listUser(){
+        tag.listTagUser().then().body("errcode", equalTo(0));
+    }
+
+    @Test
+    public void deleteUser(){
+        tag.listTagUser().then().body("errcode", equalTo(0));
+    }
 }
