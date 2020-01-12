@@ -12,6 +12,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.HashMap;
 
+import static io.restassured.RestAssured.authentication;
 import static io.restassured.RestAssured.given;
 
 /**
@@ -113,7 +114,38 @@ public class User {
         return given()
                 .queryParam("access_token", Work.getInstance().getToken())
                 .queryParam("userid", userid)
-                .when().post("https://qyapi.weixin.qq.com/cgi-bin/user/delete")
-                .then().extract().response();
+                .when().log().all()
+                       .post("https://qyapi.weixin.qq.com/cgi-bin/user/delete")
+                .then().log().all()
+                        .extract().response();
+    }
+
+    /**
+     * 批量删除成员
+     * @return
+     */
+    public Response betchDelete(HashMap<String ,Object> data){
+        return given()
+                .queryParam("access_token", Work.getInstance().getToken())
+                .body(data)
+                .when().log().all()
+                        .post("https://qyapi.weixin.qq.com/cgi-bin/user/batchdelete")
+                .then().log().all()
+                       .extract().response();
+    }
+
+    /**
+     * 获取部门成员
+     * @return
+     */
+    public Response simplelist(int department_id){
+        return given()
+                .queryParam("access_token", Work.getInstance().getToken())
+                .queryParam("department_id",department_id)
+                .queryParam("fetch_child",1)
+                .when().log().all()
+                .get("https://qyapi.weixin.qq.com/cgi-bin/user/simplelist")
+                .then().log().all()
+                .extract().response();
     }
 }

@@ -118,4 +118,25 @@ public class TestUser {
         //再次获取userid，其状态码不等于0
         user.get(userid).then().body("errcode", not(equalTo(0)));
     }
+
+    /**
+     * 获取部门成员
+     */
+    @Test
+    public void simplelist(){
+        User user = new User();
+        user.simplelist(1).then().body("errcode", equalTo(0));
+    }
+
+    /**
+     * 批量删除
+     * TODO：该api的响应报文与接口文档不符
+     */
+    @Test
+    public void batchDelete(){
+        HashMap<String , Object> data = new HashMap<>();
+        data.put("useridlist", new String[]{"Richered_1578820866548","Richered_1578820553183"});
+        User user = new User();
+        user.betchDelete(data).then().body("errcode", equalTo(0));
+    }
 }
