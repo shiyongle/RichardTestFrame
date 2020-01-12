@@ -2,7 +2,6 @@ package com.callback.service;
 
 import com.callback.service.impl.Ricky;
 import com.callback.service.impl.Teacher;
-import org.testng.annotations.Test;
 
 /**
  * @Author: Richered
