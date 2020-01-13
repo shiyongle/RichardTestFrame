@@ -121,11 +121,13 @@ public class TestUser {
 
     /**
      * 获取部门成员
+     * department_id为部门id
+     * fetch_child:1为递归，遍历其部门id下的所有承运；-1不遍历
      */
     @Test
     public void simplelist(){
         User user = new User();
-        user.simplelist(1).then().body("errcode", equalTo(0));
+        user.simplelist(1, 1).then().body("errcode", equalTo(0));
     }
 
     /**

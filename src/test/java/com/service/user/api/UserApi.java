@@ -12,15 +12,14 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.HashMap;
 
-import static io.restassured.RestAssured.authentication;
 import static io.restassured.RestAssured.given;
 
 /**
  * @Author: Richered
  * @Date: 2020/1/10 16:58
- * @Description: 成员部分
+ * @Description: 成员部分--数据驱动
  */
-public class User {
+public class UserApi extends BaseApi{
 
     /**
      * 读取成员
@@ -28,13 +27,17 @@ public class User {
      * @return
      */
     public Response get(String userid){
-        return given()
-                .queryParam("access_token", Work.getInstance().getToken())
-                .queryParam("userid", userid)
-                .when().log().all()
-                        .get("https://qyapi.weixin.qq.com/cgi-bin/user/get")
-                .then().log().all()
-                        .extract().response();
+        HashMap<String, Object> params=new HashMap<>();
+        params.put("userid", userid);
+        setParams(params);
+        return parseSteps();
+//        return given()
+//                .queryParam("access_token", Work.getInstance().getToken())
+//                .queryParam("userid", userid)
+//                .when().log().all()
+//                        .get("https://qyapi.weixin.qq.com/cgi-bin/user/get")
+//                .then().log().all()
+//                        .extract().response();
     }
 
     /**
