@@ -1,10 +1,18 @@
 package com.service.user.testcase;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 import com.service.user.api.User;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -13,9 +21,12 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Stream;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.not;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
  * @Author: Richered
@@ -117,6 +128,78 @@ public class TestUser {
 
         //再次获取userid，其状态码不等于0
         user.get(userid).then().body("errcode", not(equalTo(0)));
+    }
+
+    /**
+     * CsvSource注解为参数化,和testNg的dataprovider一样
+     * CsvFileSource注解为读取外部数据源文件
+     * MethodSource为指定方法进行解析
+     * @param name
+     * @param userid
+     */
+    @ParameterizedTest
+//    @CsvSource({
+//            "abc", "abc",
+//            "mn","mn",
+//            "1111","2222"
+//    })
+//    @CsvFileSource(resources = "TestUser.csv")
+    @MethodSource("deleteByParamsFromYamlData")
+    public void deleteByParams(String name, String userid, List<Integer> departs){
+        String nameNew = name;
+        if (userid.isEmpty()) {
+            userid = "Richered_" + System.currentTimeMillis();
+        }
+        if (departs ==null){
+            departs = Arrays.asList(1);
+        }
+        HashMap<String , Object> data = new HashMap<>();
+        data.put("name", nameNew);
+//        data.put("department", new int[]{1});
+        data.put("department",departs);
+        data.put("mobile", String.valueOf(System.currentTimeMillis()).substring(0,11));
+
+        User user = new User();
+        user.create(userid, data).then().body("errcode", equalTo(0));
+
+        user.delete(userid).then().body("errcode", equalTo(0));
+
+        //再次获取userid，其状态码不等于0
+        user.get(userid).then().body("errcode", not(equalTo(0)));
+    }
+
+    /**
+     * 参数化读取文件数据方法
+     * @return
+     */
+    static Stream<Arguments> deleteByParamsFromYamlData(){
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+
+        //生成一个代表List<HashMap>的类型，用于传递给readValue
+        TypeReference<List<HashMap<String, Object>>> typeRef =
+                new TypeReference<List<HashMap<String, Object>>>() {
+                };
+//        String fileName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+        List<HashMap<String, Object>> data;
+        try {
+            data = mapper.readValue(
+                    TestUser.class.getResourceAsStream("TestUser.yaml"),
+                    typeRef);
+            ArrayList<Arguments> results = new ArrayList<>();
+            data.forEach(map -> {
+                results.add(arguments(
+                        map.get("name").toString(),
+                        map.get("userid").toString(),
+                        map.get("departs")
+                ));
+            });
+
+            return results.stream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return Stream.of();
     }
 
     /**
