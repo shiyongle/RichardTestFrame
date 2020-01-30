@@ -127,6 +127,7 @@ public class User {
     public Response betchDelete(HashMap<String ,Object> data){
         return given()
                 .queryParam("access_token", Work.getInstance().getToken())
+                .contentType(ContentType.JSON)
                 .body(data)
                 .when().log().all()
                         .post("https://qyapi.weixin.qq.com/cgi-bin/user/batchdelete")

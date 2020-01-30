@@ -6,10 +6,12 @@ import com.github.mustachejava.MustacheFactory;
 import com.service.Work;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static io.restassured.RestAssured.given;
@@ -26,7 +28,7 @@ public class UserApi extends BaseApi{
      * @param userid
      * @return
      */
-    public Response get(String userid){
+    public Response getUserInfo(String userid){
         HashMap<String, Object> params=new HashMap<>();
         params.put("userid", userid);
         setParams(params);
@@ -58,17 +60,13 @@ public class UserApi extends BaseApi{
 
     /**
      * 创建成员
-     * @param userid
-     * @param data
+     * @param
+     * @param body
      * @return
      */
-    public Response create(String userid, HashMap<String, Object> data) {
-        data.put("userid", userid);
-        return given()
-                .queryParam("access_token", Work.getInstance().getToken())
-                .body(data)
-                .when().post("https://qyapi.weixin.qq.com/cgi-bin/user/create")
-                .then().extract().response();
+    public Response createUser(HashMap<String, Object> body) {
+        setParams(body);
+        return parseSteps();
     }
 
     /**

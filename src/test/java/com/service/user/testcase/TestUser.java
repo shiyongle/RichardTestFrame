@@ -27,6 +27,7 @@ import java.util.stream.Stream;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.not;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
+import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
 /**
  * @Author: Richered
@@ -40,6 +41,11 @@ public class TestUser {
         User user = new User();
         user.get("123456789").then().body("name", equalTo("Richared"));
     }
+
+    @Test
+    public void schema(){
+        User user = new User();
+        user.get("123456789").then().body(matchesJsonSchemaInClasspath("com/service/user/testcase/user_get_schema.json"));    }
 
     @Test
     public void update(){

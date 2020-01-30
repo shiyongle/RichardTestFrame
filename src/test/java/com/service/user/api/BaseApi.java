@@ -3,9 +3,14 @@ package com.service.user.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.framework.ApiObjectModel;
+import com.github.mustachejava.DefaultMustacheFactory;
+import com.github.mustachejava.Mustache;
+import com.github.mustachejava.MustacheFactory;
 import io.restassured.response.Response;
 
 import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.HashMap;
 
 /**
@@ -41,5 +46,24 @@ public class BaseApi {
      */
     public void setParams(HashMap<String, Object> data){
         params = data;
+    }
+
+    /**
+     * 封装mustache模板技术
+     * @param templatePath
+     * @param data
+     * @return
+     */
+    public String template(String templatePath, HashMap<String, Object> data){
+        Writer writer = new StringWriter();
+        MustacheFactory mf = new DefaultMustacheFactory();
+        Mustache mustache = mf.compile(templatePath);
+        mustache.execute(writer, data);
+        try {
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return writer.toString();
     }
 }
