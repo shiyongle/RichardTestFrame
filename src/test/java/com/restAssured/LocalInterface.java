@@ -2,6 +2,7 @@ package com.restAssured;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.junit.Test;
 
 import java.io.InputStream;
@@ -77,5 +78,20 @@ public class LocalInterface {
     public void JsonPathDemo(){
         System.out.println(bookTitles);
         assertThat(sumOfAllAuthorLengths, is(53));
+    }
+
+    @Test
+    public void filterAlertRequest(){
+        given().filter((req, res, ctx)->{
+            req.queryParam("token", "xxxx");
+            req.path("/CGIDEMO/cgi-bin/user_error.json");
+            req.baseUri("http://127.0.0.1:8000");
+            System.out.println(req.getURI());
+            Response resReal = ctx.next(req, res);
+            System.out.println(resReal.getStatusLine());
+            return resReal;
+        })
+                .when().log().all().get("http://127.0.0.1:8000/CGIDEMO/cgi-bin/user.json")
+                .then().log().all().statusCode(200);
     }
 }
