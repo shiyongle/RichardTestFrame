@@ -1,6 +1,8 @@
 package com.appium.page;
 
+import com.google.common.base.Function;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -38,7 +40,7 @@ public class App extends BasePage {
         //TODO:显式等待
         long start=System.currentTimeMillis();
         new WebDriverWait(driver, 40)
-                .until(x -> {
+                .until((Function<? super WebDriver, Boolean>) x -> {
                     String xml=driver.getPageSource();
                     Boolean exist=xml.contains("home_search") || xml.contains("image_cancel") ;
                     System.out.println((System.currentTimeMillis() - start)/1000);

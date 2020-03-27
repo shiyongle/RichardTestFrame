@@ -15,7 +15,7 @@ public class Ricky implements Student {
         try{
             Thread.sleep(3000);
         }catch (InterruptedException  e){
-            //告诉老师写了多久
+            //告诉老师写了多久；回调
             callback.tellAnswer(3);
         }
     }
