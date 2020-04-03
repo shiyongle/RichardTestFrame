@@ -4,6 +4,8 @@ import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 //import org.testng.annotations.BeforeTest;
 //import org.testng.annotations.Test;
 //import ru.yandex.qatools.allure.annotations.Title;
@@ -32,7 +34,7 @@ public class AllureDemo {
 //        System.out.println("calc2");
 //    }
 
-//    @BeforeTest
+    @BeforeAll
     public void testallure(){
         RestAssured.baseURI = "http://localhost";
         RestAssured.basePath = "CGIProject/cgi-bin/";
@@ -46,7 +48,7 @@ public class AllureDemo {
     @TmsLink("local-cgi")
 //    @Title("local-cgi")
     @Severity(SeverityLevel.BLOCKER)
-//    @Test
+    @Test
     public void runtest() throws IOException, URISyntaxException {
         String name = "richard";
         String bodyString =  "{\n" + "\t\"username\":\"" + name + "}\n";
