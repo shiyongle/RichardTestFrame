@@ -6,4 +6,4 @@ methods:
       channelId: ${channelId}
       productType: ${productType}
     method: post
-    url: http://47.96.181.183:10088/h/com.ydl.wo.intf.facade.CpsConfigurationPageFacade/getConfigurationPageNew
+    url: http://47.96.181.183:10088/h/com.ydl.wo.intf.facade.CpsConfigurationPageFacade/getConfigurationPage
