@@ -45,7 +45,6 @@ public class Work {
 
             System.out.println(token);
         }
-
         return token;
     }
 }
