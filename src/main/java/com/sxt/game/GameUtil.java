@@ -22,12 +22,12 @@ public class GameUtil {
      * @param path
      * @return
      */
-    public static Image getImage(String path){
+    public static Image getImage(String path) {
         BufferedImage bi = null;
         try {
             URL u = GameUtil.class.getClassLoader().getResource(path);
             bi = ImageIO.read(u);
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return bi;

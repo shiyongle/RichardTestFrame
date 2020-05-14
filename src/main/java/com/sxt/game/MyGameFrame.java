@@ -17,10 +17,11 @@ import java.util.Date;
  */
 public class MyGameFrame extends Frame {
 
-    /**缺少两张图：背景图和飞机图**/
-    Image ball = GameUtil.getImage("src/main/java/com/sxt/images/ball.png");
+    Image planeImg = GameUtil.getImage("com/sxt/images/plane.png");
 
-    Plan plan = new Plan(ball, 250, 250);
+    Image bg  = GameUtil.getImage("com/sxt/images/bg.jpg");
+
+    Plan plan = new Plan(planeImg, 250, 250);
 
     Shell[] shells = new Shell[50];
 
@@ -78,7 +79,7 @@ public class MyGameFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         Color c = g.getColor();
-        g.drawImage(ball, 0, 0, null);
+        g.drawImage(bg, 0, 0, null);
         plan.drawSelf(g);
         //画出50个炮弹
         for (int i = 0; i < shells.length; i++){
