@@ -12,7 +12,7 @@ public class Explode {
     static Image[] imgs = new Image[16];
     static {
         for (int i = 0; i < 16; i++){
-            imgs[i] = GameUtil.getImage("images/explode/e" + (i +1) + ".gif");
+            imgs[i] = GameUtil.getImage("com/sxt/images/explode/e" + (i +1) + ".gif");
             imgs[i].getWidth(null);
         }
     }

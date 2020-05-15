@@ -34,5 +34,10 @@ public class SxtStu {
 
         stu.play();
         stu.study();
+
+        int [] arr = new int[10];
+        for (int i : arr){
+            System.out.println(i);
+        }
     }
 }

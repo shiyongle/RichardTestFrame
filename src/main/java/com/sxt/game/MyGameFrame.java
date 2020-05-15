@@ -1,8 +1,5 @@
 package com.sxt.game;
 
-import com.sun.imageio.plugins.common.ImageUtil;
-
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
