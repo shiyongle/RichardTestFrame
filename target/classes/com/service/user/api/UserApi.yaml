@@ -1,0 +1,29 @@
+methods:
+  #读取成员
+  getUserInfo:
+    query:
+      userid: ${userid}
+    method: get
+    url: https://qyapi.weixin.qq.com/cgi-bin/user/get
+
+  #创建成员
+  createUser:
+    query:
+      userid: ${userid}
+      name: ${name}
+      department: ${department}
+      external_profile:
+        external_attr:
+          - type: 0
+            name: "年龄"
+            text:
+              value: ${age}
+          - type: 1
+            name: "公司网址"
+            web:
+              url: ${webUrl}
+              title: ${webTitle}
+    method: post
+    url: https://qyapi.weixin.qq.com/cgi-bin/user/create
+
+

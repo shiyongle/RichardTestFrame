@@ -3,8 +3,11 @@ package com.ydl.service.cps_center_service.adminUserFacade.testcase;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import com.service.user.testcase.TestUser;
-import com.ydl.service.cps_center_service.adminUserFacade.api.QueryHollyAccount;
+import com.ydl.service.cps_center_service.adminUserFacade.api.AdminUserFacade;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -24,12 +27,16 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * @Date: 2020/3/27 17:12
  * Description:
  */
+@Feature("TestQueryHollyAccount")
 public class TestQueryHollyAccount {
+    @Test
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("查询某用户账号-正向用例")
     @ParameterizedTest
     @MethodSource("getYamlData")
     public void queryHollyAccount(String name){
-        QueryHollyAccount queryHollyAccount = new QueryHollyAccount();
-        queryHollyAccount.get(name).then().body("code",  equalTo("200"));
+        AdminUserFacade adminUserFacade = new AdminUserFacade();
+        adminUserFacade.queryHollyAccount(name).then().body("code",  equalTo("200"));
     }
 
     static Stream<Arguments> getYamlData(){

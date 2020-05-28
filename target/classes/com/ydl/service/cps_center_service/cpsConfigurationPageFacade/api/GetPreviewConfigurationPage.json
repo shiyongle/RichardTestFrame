@@ -1,0 +1,76 @@
+{
+  "channelId": 0,
+  "distributorId": 0,
+  "productType": 0,
+  "modifier": "string",
+  "logo": {
+    "showTag": 0,
+    "logoData": [
+      {
+        "image": "string",
+        "weight": 0,
+        "itemId": 0,
+        "createDate": "2020-03-30T06:03:14.500Z",
+        "updateTime": "2020-03-30T06:03:14.500Z",
+        "url": "string",
+        "name": "string"
+      }
+    ]
+  },
+  "banner": {
+    "showTag": 0,
+    "bannerData": [
+      {
+        "image": "string",
+        "weight": 0,
+        "itemId": 0,
+        "createDate": "2020-03-30T06:03:14.500Z",
+        "updateTime": "2020-03-30T06:03:14.500Z",
+        "url": "string",
+        "name": "string"
+      }
+    ]
+  },
+  "hot": {
+    "showTag": 0,
+    "hotData": [
+      {
+        "image": "string",
+        "weight": 0,
+        "itemId": 0,
+        "createDate": "2020-03-30T06:03:14.500Z",
+        "updateTime": "2020-03-30T06:03:14.500Z",
+        "url": "string",
+        "name": "string"
+      }
+    ]
+  },
+  "new": {
+    "showTag": 0,
+    "newData": [
+      {
+        "image": "string",
+        "weight": 0,
+        "itemId": 0,
+        "createDate": "2020-03-30T06:03:14.500Z",
+        "updateTime": "2020-03-30T06:03:14.500Z",
+        "url": "string",
+        "name": "string"
+      }
+    ]
+  },
+  "select": {
+    "showTag": 0,
+    "selectData": [
+      {
+        "image": "string",
+        "weight": 0,
+        "itemId": 0,
+        "createDate": "2020-03-30T06:03:14.500Z",
+        "updateTime": "2020-03-30T06:03:14.500Z",
+        "url": "string",
+        "name": "string"
+      }
+    ]
+  }
+}

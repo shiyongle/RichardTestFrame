@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.ydl.service.cps_center_service.cpsConfigurationPageFacade.api.GetConfigurationPageNew;
-import org.junit.jupiter.api.Test;
+import io.qameta.allure.Feature;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -23,10 +23,11 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * @Date: 2020/3/27 17:23
  * Description:
  */
+@Feature("TestGetConfigurationPageNew")
 public class TestGetConfigurationPageNew {
     @ParameterizedTest
     @MethodSource("getYamlDate")
-    public void getConfigNew(int distributorId, int channelId, int productType){
+    public void getConfigurationPageNew(int distributorId, int channelId, int productType){
         GetConfigurationPageNew getConfigurationPageNew = new GetConfigurationPageNew();
         getConfigurationPageNew.get(distributorId, channelId, productType).then().body("code",  equalTo("200"));
     }
