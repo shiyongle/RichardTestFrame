@@ -15,7 +15,6 @@ public class CompoundInterest {
 
         for (int j = 0; j < interestRate.length; j++){
             interestRate[j] = (STARTRATE + j) /100.0;
-            //saasda
         }
 
         double[][] balances = new double[NYEARS][NRATES];
