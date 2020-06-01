@@ -52,9 +52,9 @@ public class Employee {
         return nextId;
     }
 
-    public static void main(String[] args) {
-        Employee e =new Employee("Harry", 50000);
-        System.out.println(e.getName() + "" + e.getSalary());
-    }
+//    public static void main(String[] args) {
+//        Employee e =new Employee("Harry", 50000);
+//        System.out.println(e.getName() + "" + e.getSalary());
+//    }
 
 }
