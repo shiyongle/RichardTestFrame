@@ -7,23 +7,28 @@ import java.time.LocalDate;
  * @Date: 2020/5/28 11:09
  * Description:
  */
-public class Employee {
+public class Employee extends Person{
     private static int nextId = 1;
     private String name;
     private double salary;
     private LocalDate hireDay;
     private int id;
 
-    public Employee(String n, double s, int year, int month, int day) {
-        name = n;
-        salary = s;
+    public Employee(String name, double s, int year, int month, int day) {
+        super(name);
+        this.salary = s;
         hireDay = LocalDate.of(year, month, day);
     }
 
     public Employee(String n, double s){
-        name = n;
+        super(n);
         salary = s;
         id = 0;
+    }
+
+    @Override
+    public String getDescription() {
+        return String.format("an employee with a salary of %.2f", salary);
     }
 
     public String getName() {
