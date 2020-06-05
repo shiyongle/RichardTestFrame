@@ -18,5 +18,6 @@ public class ManageTest {
         for (Employee e : staff){
             System.out.println("name = " + e.getName() + ", salary=" + e.getSalary());
         }
+        System.out.println(boss.toString());
     }
 }

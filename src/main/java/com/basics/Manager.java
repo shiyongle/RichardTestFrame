@@ -14,6 +14,13 @@ public class Manager extends Employee {
         bonus = 0;
     }
 
+    @Override
+    public String toString() {
+        return "Manager{" +
+                "bonus=" + bonus +
+                '}';
+    }
+
     public Manager(String n, double s) {
         super(n, s);
     }

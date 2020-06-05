@@ -20,6 +20,16 @@ public class Employee extends Person{
         hireDay = LocalDate.of(year, month, day);
     }
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", salary=" + salary +
+                ", hireDay=" + hireDay +
+                ", id=" + id +
+                '}';
+    }
+
     public Employee(String n, double s){
         super(n);
         salary = s;
