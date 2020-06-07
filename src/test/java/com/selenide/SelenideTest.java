@@ -18,12 +18,12 @@ public class SelenideTest {
         Configuration.browser = "Chrome";
         Configuration.baseUrl = "https://www.baidu.com";
         open("/");
-        $("#kw").setValue("selenide");
-        $("#su").click();
+//        $("#kw").setValue("selenide");
+//        $("#su").click();
         Thread.sleep(3000);
 
         //断言
         $$("h3 > a").shouldHave(size(9));
-        $("h3 >a").setValue(String.valueOf(text("selenide_百度翻译")));
+//        $("h3 >a").setValue(String.valueOf(text("selenide_百度翻译")));
     }
 }
