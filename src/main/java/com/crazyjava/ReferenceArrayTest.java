@@ -12,12 +12,12 @@ public class ReferenceArrayTest {
 
         Person zhang = new Person();
 
-        zhang.age = 15;
+        zhang.setAge(15);
         zhang.height = 158;
 
         Person lee = new Person();
 
-        lee.age = 16;
+        lee.setAge(20);
         lee.height = 170;
 
         students[0] = zhang;
