@@ -6,6 +6,14 @@ package com.crazyjava;
  * @Description:
  */
 public class Ostrich extends Bird {
+    public Ostrich(Animal a) {
+        super(a);
+    }
+
+    public Ostrich() {
+        super();
+    }
+
     public void fly(){
         System.out.println("我只能在地下奔跑~~");
     }

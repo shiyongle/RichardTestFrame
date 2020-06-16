@@ -6,6 +6,21 @@ package com.crazyjava;
  * @Description:
  */
 public class Bird {
+
+    private Animal a;
+
+    public Bird(Animal a){
+        this.a = a;
+    }
+
+    public Bird() {
+
+    }
+
+    public void breathe(){
+        a.breathe();
+    }
+
     public void fly(){
         System.out.println("我在天空自由自在的飞翔·~~~");
     }
