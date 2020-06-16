@@ -8,10 +8,15 @@ package com.crazyjava;
 public class Sub extends Base {
 
     public String color;
+    public String name;
 
     public Sub(double size, String name, String color) {
         super(size, name);
         this.color = color;
+    }
+
+    public void test(){
+        System.out.println("子类重写父类的方法," + "其name字符串的长度" + name.length());
     }
 
     public static void main(String[] args) {

@@ -12,4 +12,12 @@ public class Base {
         this.size = size;
         this.name = name;
     }
+
+    public Base(){
+        test();
+    }
+
+    public void test(){
+        System.out.println("将被子类重写的方法");
+    }
 }
