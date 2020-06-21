@@ -19,6 +19,10 @@ public class Person {
         this.idStr = idStr;
     }
 
+    public Person(int age){
+        this.age = age;
+    }
+
     public double getHeight() {
         return height;
     }
