@@ -28,6 +28,11 @@ public class R implements Comparable{
         return false;
     }
 
+    /**
+     * 根据count属性来判断两个对象的大小
+     * @param obj
+     * @return
+     */
     @Override
     public int compareTo(Object obj) {
         R r = (R) obj;
