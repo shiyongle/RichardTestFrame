@@ -16,6 +16,21 @@ public class DivTest {
         System.out.println("5除以0.0的结果是：" + 5 / 0.0);
 
         //报错
-        System.out.println("-5除以0的结果是: " + -5 / 0);
+//        System.out.println("-5除以0的结果是: " + -5 / 0);
+
+        try {
+            Integer c = Integer.parseInt(args[0]);
+            Integer d = Integer.parseInt(args[1]);
+            Integer e = c / d;
+            System.out.println("您输入两个数相除的结果是：" + e);
+        }catch (IndexOutOfBoundsException ie){
+            System.out.println("数组越界：运行程序时输入的参数个数不够");
+        }catch (NumberFormatException ne){
+            System.out.println("数字格式化异常：程序只能接收整数参数");
+        }catch (ArithmeticException ae){
+            System.out.println("算术异常");
+        }catch (Exception e){
+            System.out.println("未知异常");
+        }
     }
 }
