@@ -1,5 +1,6 @@
 package com.crazyjava;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.Canvas;
 import java.awt.event.ActionListener;
@@ -40,16 +41,20 @@ public class HandDraw {
     private Color foreColor = new Color(255, 0, 0);
 
     public void init(){
-        ActionListener menuListener = e ->{
-            if (e.getActionCommand().equals("绿色")){
-                foreColor = new Color(0, 255, 0);
-            }
-            if (e.getActionCommand().equals("红色")){
-                foreColor = new Color(255, 0, 0);
-            }
-            if (e.getActionCommand().equals("蓝色")){
-                foreColor = new Color(0, 0, 255);
-            }
+        ActionListener menuListener = ae ->{
+//            if (e.getActionCommand().equals("绿色")){
+//                foreColor = new Color(0, 255, 0);
+//            }
+//            if (e.getActionCommand().equals("红色")){
+//                foreColor = new Color(255, 0, 0);
+//            }
+//            if (e.getActionCommand().equals("蓝色")){
+//                foreColor = new Color(0, 0, 255);
+//            }
+
+            final JColorChooser colorPanel = new JColorChooser(foreColor);
+            JDialog jd = JColorChooser.createDialog(f, "选择画笔颜色", false, colorPanel, e->foreColor = colorPanel.getColor(), null);
+            jd.setVisible(true);
         };
         redItem.addActionListener(menuListener);
         greenItem.addActionListener(menuListener);
