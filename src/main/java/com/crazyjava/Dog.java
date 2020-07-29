@@ -6,6 +6,14 @@ package com.crazyjava;
  * @Description:
  */
 public class Dog {
+    private int age;
+    private String name;
+
+    public Dog(int age, String name){
+        this.name = name;
+        this.age = age;
+    }
+
     public void jump(){
         System.out.println("正在执行jump方法");
     }
@@ -17,7 +25,7 @@ public class Dog {
 
     public static void main(String[] args) {
         Person p = new Person();
-        System.out.println("Person对象是否equals Dog对象：" + p.equals(new Dog()));
+//        System.out.println("Person对象是否equals Dog对象：" + p.equals(new Dog()));
         System.out.println("Person对象是否equals String对象：" + p.equals(new String("Hello")));
     }
 }

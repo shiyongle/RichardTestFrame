@@ -7,7 +7,7 @@ package com.crazyjava;
  */
 public class DogTest {
     public static void main(String[] args) {
-        Dog g = new Dog();
+        Dog g = new Dog(12, "xiaohuo");
         g.run();
     }
 }
