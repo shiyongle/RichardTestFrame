@@ -3,10 +3,7 @@ package com.crazyjava;
 import javax.swing.*;
 import java.awt.*;
 import java.io.FileInputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Properties;
 
 /**
@@ -57,10 +54,13 @@ public class LoginFrame {
     }
 
     public boolean validate(String userName, String userPass){
-        String sql = "select * from jdbc_test where jdbc_name = '" + userName + "and jdbc_desc = '" + userPass + "";
-        try(Connection conn = DriverManager.getConnection(url, user, pass); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)){
-            if (rs.next()){
-                return true;
+        try(Connection conn = DriverManager.getConnection(url, user, pass); PreparedStatement pstmt = conn.prepareStatement("select * from jdbc_test where jdbc_name = ? and jdbc_desc = ?")){
+            pstmt.setString(1, userName);
+            pstmt.setString(2, userPass);
+            try(ResultSet rs = pstmt.executeQuery()){
+                if (rs.next()){
+                    return true;
+                }
             }
         }catch (Exception e){
             e.printStackTrace();
