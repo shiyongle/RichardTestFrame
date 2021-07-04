@@ -113,16 +113,16 @@ public class CreateYouBangUser {
             String password = "ZAinz^8SFb6FNj9bCQ7FxMnQc";
             //加密
             Map<String, String> map = new HashMap<>();
-            map.put("ext_user_id", "youbang_test23345013"); //相当于user_id，不一定对应上，唯一
+            map.put("ext_user_id", "youbang_test202106261411"); //相当于user_id，不一定对应上，唯一
 //        map.put("mobile", "18758896832");
-            map.put("mobile", "13216101995");
+            map.put("mobile", "15420212021");
 //        map.put("target", "/eco/ym");
-            map.put("idcard", "542522199008310032"); //身份证
-            map.put("name", "石永乐微医测试");
+            map.put("idcard", "610527199512261813"); //身份证
+            map.put("name", "石永乐");
             map.put("open_id", "110101199109077417");
-            map.put("plan_code", "WBCN"); //根据plan_code跳转
-            map.put("effective_date","2019-05-25");// 保单生效日期，往前推3个月
-            map.put("policy_number","9814977TGF");// 保单号，唯一
+            map.put("plan_code", "WBC3S"); //根据plan_code跳转,   守护丽人2021(WBC3N)       守护丽人2021(WBC3S)    守护丽人2020（WBCN）
+            map.put("effective_date","2020-11-26");// 保单生效日期，往前推3个月
+            map.put("policy_number","98149771212133POK");// 保单号，唯一
             String ori = JSONObject.toJSONString(map);
 
             System.out.println("加密前：" + ori);
@@ -138,7 +138,7 @@ public class CreateYouBangUser {
             String data = encryptResultStr + timestamp + once + clientKey;
             String sign = Sha256Utils.getSHA256(data);
             //测试地址（预发记得改url）
-            // String url = "https://youbanggx.wy.guahao-test.com/partners/entrance?token=" + URLEncoder.encode(encryptResultStr, "utf-8")
+//             String url = "https://youbanggx.wy.guahao-test.com/partners/entrance?token=" + URLEncoder.encode(encryptResultStr, "utf-8")
             String url = "https://youbanggx.wy.guahao.com/partners/entrance?token=" + URLEncoder.encode(encryptResultStr, "utf-8")
                     + "&timestamp=" + timestamp + "&nonce=12345678&signature=" + sign;
             System.out.println(url);

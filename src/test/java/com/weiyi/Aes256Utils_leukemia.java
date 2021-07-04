@@ -113,16 +113,16 @@ public class Aes256Utils_leukemia {
         String password = "ZAinz^8SFb6FNj9bCQ7FxMnQc";
         //加密
         Map<String, String> map = new HashMap<>();
-        map.put("ext_user_id", "youbang_test23345029"); //相当于user_id，不一定对应上
+        map.put("ext_user_id", "youbang_test202106261408"); //相当于user_id，不一定对应上
 //        map.put("mobile", "18843326071");
-        map.put("mobile", "15891403652");
+        map.put("mobile", "15420212021");
 //        map.put("target", "/eco/ym");
-        map.put("idcard", "620721199008310019"); //身份证
-        map.put("name", "石永乐微医测试");
-        map.put("open_id", "110101199109077417");
-        map.put("plan_code", "WJLEU"); //根据plan_code跳转
-        map.put("effective_date","2019-05-25");// 保单生效日期
-        map.put("policy_number","590003999HGB");// 保单号
+        map.put("idcard", "610527199512271813"); //身份证
+        map.put("name", "石永乐");
+        map.put("open_id", "610527199512261813");
+        map.put("plan_code", "WJLEU3"); //根据plan_code跳转        守护宝贝2021（WJLEU3）  守护宝贝2020（WJLEU）
+        map.put("effective_date","2020-08-26");// 保单生效日期
+        map.put("policy_number","590003999LYOL");// 保单号
         String ori = JSONObject.toJSONString(map);
 
         System.out.println("加密前：" + ori);
@@ -138,7 +138,7 @@ public class Aes256Utils_leukemia {
         String data = encryptResultStr + timestamp + once + clientKey;
         String sign = Sha256Utils.getSHA256(data);
         //测试地址（预发记得改url）
-        // String url = "https://youbanggx.wy.guahao-test.com/partners/entrance?token=" + URLEncoder.encode(encryptResultStr, "utf-8")
+//         String url = "https://youbanggx.wy.guahao-test.com/partners/entrance?token=" + URLEncoder.encode(encryptResultStr, "utf-8")
         String url = "https://youbanggx.wy.guahao.com/partners/entrance?token=" + URLEncoder.encode(encryptResultStr, "utf-8")
                 + "&timestamp=" + timestamp + "&nonce=12345678&signature=" + sign;
         System.out.println(url);
