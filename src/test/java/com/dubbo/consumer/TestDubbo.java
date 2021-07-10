@@ -27,7 +27,9 @@ public class TestDubbo {
         reference.setApplication(new ApplicationConfig("first-dubbo-consumer"));
         reference.setRegistry(new RegistryConfig("zookeeper://" + zookeeperHost + ":2181"));
         reference.setInterface(GreetingsService.class);
+        reference.setGeneric(true);
         service = reference.get();
+        Object res = service.sayHi("shiyl");
     }
 
     //常规参数化
