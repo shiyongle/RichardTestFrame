@@ -304,6 +304,11 @@
             <artifactId>druid</artifactId>
             <version>1.2.3</version>
         </dependency>
+        <dependency>
+            <groupId>com.guahao.portal</groupId>
+            <artifactId>membership-share</artifactId>
+            <version>1.9.43</version>
+        </dependency>
     </dependencies>
 
 </project>
