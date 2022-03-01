@@ -113,16 +113,16 @@ public class Aes256Utils_leukemia {
         String password = "ZAinz^8SFb6FNj9bCQ7FxMnQc";
         //加密
         Map<String, String> map = new HashMap<>();
-        map.put("ext_user_id", "youbang_test202106261408"); //相当于user_id，不一定对应上
+        map.put("ext_user_id", "youbang_test20208161548"); //相当于user_id，不一定对应上
 //        map.put("mobile", "18843326071");
-        map.put("mobile", "15420212021");
+        map.put("mobile", "13525005825");
 //        map.put("target", "/eco/ym");
-        map.put("idcard", "610527199512271813"); //身份证
-        map.put("name", "石永乐");
-        map.put("open_id", "610527199512261813");
+        map.put("idcard", "530121198608255034"); //身份证
+        map.put("name", "郝修杰");
+        map.put("open_id", "530121199007288177");
         map.put("plan_code", "WJLEU3"); //根据plan_code跳转        守护宝贝2021（WJLEU3）  守护宝贝2020（WJLEU）
         map.put("effective_date","2020-08-26");// 保单生效日期
-        map.put("policy_number","590003999LYOL");// 保单号
+        map.put("policy_number","590003999LUAXO");// 保单号
         String ori = JSONObject.toJSONString(map);
 
         System.out.println("加密前：" + ori);
@@ -138,8 +138,8 @@ public class Aes256Utils_leukemia {
         String data = encryptResultStr + timestamp + once + clientKey;
         String sign = Sha256Utils.getSHA256(data);
         //测试地址（预发记得改url）
-//         String url = "https://youbanggx.wy.guahao-test.com/partners/entrance?token=" + URLEncoder.encode(encryptResultStr, "utf-8")
-        String url = "https://youbanggx.wy.guahao.com/partners/entrance?token=" + URLEncoder.encode(encryptResultStr, "utf-8")
+         String url = "https://youbanggx.wy.guahao-test.com/partners/entrance?token=" + URLEncoder.encode(encryptResultStr, "utf-8")
+//        String url = "https://youbanggx.wy.guahao.com/partners/entrance?token=" + URLEncoder.encode(encryptResultStr, "utf-8")
                 + "&timestamp=" + timestamp + "&nonce=12345678&signature=" + sign;
         System.out.println(url);
         //解密nonce=xxx&signature=XXX
