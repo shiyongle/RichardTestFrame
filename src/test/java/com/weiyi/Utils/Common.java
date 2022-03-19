@@ -14,7 +14,7 @@ public class Common {
 
      public static String APP_ID = "p_h5_weiyi";
 
-     public static String MODULE_VIP_URL = "http://module-vip-web-qa11.guahao-test.com";
+     public static String MODULE_VIP_URL = "http://module-vip-web-qa10.guahao-test.com";
 
      public static String SOURCE_ID = "27";
 }

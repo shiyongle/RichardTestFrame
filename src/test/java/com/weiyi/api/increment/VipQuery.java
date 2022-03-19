@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.equalTo;
 
 /**
  * @Author: Richered
@@ -87,6 +86,29 @@ public class VipQuery extends Common {
                 .body(data)
                 .when()
                 .post(MODULE_VIP_URL + "/healthvip/rest/vcode/black/yl/sendmobilevcode")
+                .then()
+                .log().all()
+                .extract().response();
+    }
+
+
+    /**
+     * 高净值会员推荐：根据sku获取对应的推荐商品
+     * @param sku
+     * @return
+     */
+    public Response recommendSku(String sku){
+        Map<String, Object> data = new HashMap<>();
+        data.put("sku",sku);
+
+        return given()
+                .header("Content-type", "application/json")
+                .header("weiyi-authtoken", CreateUserToken.getInstance().getToken())
+                .header("weiyi-appid", APP_ID)
+                .header("source-id", SOURCE_ID)
+                .body(data)
+                .when()
+                .post(MODULE_VIP_URL + "/healthvip/rest/recommendsku/black/info")
                 .then()
                 .log().all()
                 .extract().response();

@@ -16,7 +16,7 @@ public class CreateUserToken extends Common{
 
     private static String TOKEN;
 
-    private static String LOGINID = "13210001000,140.82.113.4";
+    private static String LOGINID = "13210001000";
 
     private static String PASSWORD = "ff9f9df160141abb39fa9676284c1433";
 
