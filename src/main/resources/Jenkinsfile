@@ -1,0 +1,49 @@
+pipeline {
+   agent {
+       label "${params.test_PC}"
+   }
+   triggers {
+        cron('H * * * *')
+   }
+   parameters {
+        gitParameter(name: 'branch', branch: '', branchFilter: '.*', defaultValue: 'origin/master', description: '代码分支', quickFilterEnabled: false, selectedValue: 'NONE', sortMode: 'NONE', tagFilter: '*', type: 'PT_BRANCH')
+        string(name: 'H5_url', defaultValue: 'https://wy.guahao.com', description: 'h5测试页面地址')
+        choice(name: 'test_PC', choices: ['h5_test', '172.27.28.172'], description: '执行设备:h5_test-预发mac，172.27.28.172-线上Linux')
+        choice(name: 'test_tag', choices: ['online', 'verif', 'test'], description: '环境标记: test:测试环境;verif:预发环境;online:线上环境')
+        string(name: 'phone_number', defaultValue: '18967172259', description: '测试手机号码')
+        password(name: 'password', defaultValue: 'qa111111', description: '密码')
+        choice(name: 'headless', choices: ['false', 'true'], description: '是否不显示浏览器界面')
+        choice(name: 'concurrent', choices: ['否', '1', '2', '3', '4', 'auto'], description: '是否并发执行,并发数')
+        string(name: 'robot', defaultValue: 'adcbc596-df34-4f46-8f2a-186479b45ab4', description: '群机器人地址,以逗号分隔')
+        string(name: 'email', defaultValue: '', description: '邮箱地址,以逗号分隔')
+        text(name: 'cases', defaultValue: '''home/test_home.py\nhome/test_login.py\nhome/test_home_search.py\ninquiry/test_inquiry.py\ninquiry/test_saas_inqurity.py\njgt/test_jgt_home.py\nrecords/test_records.py\nregistered/test_registered.py\nvip/test_vip.py\nfertility/test_fertility_home.py\nqlb/test_qlb.py\nwykj/test_hejiaqin.py\nsns/test_jkh_home.py\naccount/test_digital_account.py\nme/test_me.py''', description: '要执行的用例', )
+   }
+   stages {
+      stage('克隆代码'){
+          steps{
+              checkout([$class: 'GitSCM', branches: [[name: "${params.branch}"]], doGenerateSubmoduleConfigurations: false, extensions: [], gitTool: 'Default', submoduleCfg: [], userRemoteConfigs: [[url: 'https://git.guahao-inc.com/zhongxin/wytest.git',credentialsId: 'k8s_master',]]])
+          }
+      }
+      stage('测试'){
+         steps{
+             dir("${env.WORKSPACE}/src/cases_ui/") {
+             sh ""
+                    sh '''
+                    /usr/local/bin/python3.8 allure_debug.py
+                    exit 0
+                    '''
+                        }
+                }
+      }
+      stage('报告生成失败使用'){
+          steps{
+                echo "再次生成报告"
+         }
+      }
+      stage('生成Allure报告'){
+        steps{
+            allure includeProperties: false, jdk: '', results: [[path: 'report/allure_results']]
+        }
+      }
+   }
+}
