@@ -1,6 +1,5 @@
 package com.weiyi.api.testcase;
 
-import com.guahao.convention.data.domain.Result;
 import com.weiyi.api.increment.VipQuery;
 import com.weiyi.service.VipService;
 import org.apache.dubbo.config.annotation.Service;

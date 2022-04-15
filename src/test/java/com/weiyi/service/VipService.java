@@ -1,6 +1,6 @@
 package com.weiyi.service;
 
-import com.guahao.convention.data.domain.Result;
+
 import org.springframework.stereotype.Service;
 
 /**

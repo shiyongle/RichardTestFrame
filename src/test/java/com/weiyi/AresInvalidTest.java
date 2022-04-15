@@ -1,10 +1,5 @@
 package com.weiyi;
 
-import com.alibaba.fastjson.JSONObject;
-import com.dubbo.inter.GreetingsService;
-import com.guahao.portal.membership.service.common.model.OpUser;
-import com.guahao.portal.membership.service.viporder.VipRefundService;
-import com.guahao.portal.membership.service.viporder.model.ApplyRefundReq;
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.ReferenceConfig;
 import org.apache.dubbo.config.RegistryConfig;
@@ -14,19 +9,14 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.codehaus.groovy.util.ListHashMap;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import javax.annotation.Resource;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -93,38 +83,38 @@ public class AresInvalidTest {
     }
 
     @Resource
-    VipRefundService vipRefundService;
+//    VipRefundService vipRefundService;
 
     @BeforeAll
     static void beforeAll(){
-        //寻找zk
-        String dubboHost = System.getProperty("zookeeper.address", "192.168.99.51");
-
-        //配置
-        ReferenceConfig<VipRefundService> reference = new ReferenceConfig<>();
-        reference.setApplication(new ApplicationConfig("first-dubbo-consumer"));
-        reference.setRegistry(new RegistryConfig("dubbo://" + dubboHost + ":2183"));
-        reference.setInterface(VipRefundService.class);
-        reference.setGeneric(true);
-        Object vipRefundService = reference.get();
+//        //寻找zk
+//        String dubboHost = System.getProperty("zookeeper.address", "192.168.99.51");
+//
+//        //配置
+//        ReferenceConfig<VipRefundService> reference = new ReferenceConfig<>();
+//        reference.setApplication(new ApplicationConfig("first-dubbo-consumer"));
+//        reference.setRegistry(new RegistryConfig("dubbo://" + dubboHost + ":2183"));
+//        reference.setInterface(VipRefundService.class);
+//        reference.setGeneric(true);
+//        Object vipRefundService = reference.get();
     }
 
 
     @Test
     public void testRefund(){
-        ApplyRefundReq applyRefundReq = new ApplyRefundReq();
-        OpUser opUser = new OpUser();
-
-        opUser.setUserId((long) 17442);
-        opUser.setUsername("杨秉晨");
-
-        applyRefundReq.setOrderNo("202111171930211809000023675");
-        applyRefundReq.setOpUser(opUser);
-        applyRefundReq.setRefundAmount((long) 0);
-        applyRefundReq.setRefundRemark("测吧操作");
-        applyRefundReq.setApplyType(2);
-        applyRefundReq.setRecycleCoupon(1);
-
-        vipRefundService.applyRefund(applyRefundReq);
+//        ApplyRefundReq applyRefundReq = new ApplyRefundReq();
+//        OpUser opUser = new OpUser();
+//
+//        opUser.setUserId((long) 17442);
+//        opUser.setUsername("杨秉晨");
+//
+//        applyRefundReq.setOrderNo("202111171930211809000023675");
+//        applyRefundReq.setOpUser(opUser);
+//        applyRefundReq.setRefundAmount((long) 0);
+//        applyRefundReq.setRefundRemark("测吧操作");
+//        applyRefundReq.setApplyType(2);
+//        applyRefundReq.setRecycleCoupon(1);
+//
+//        vipRefundService.applyRefund(applyRefundReq);
     }
 }

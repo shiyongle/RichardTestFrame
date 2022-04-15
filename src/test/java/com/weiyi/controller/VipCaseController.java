@@ -1,6 +1,5 @@
 package com.weiyi.controller;
 
-import com.guahao.convention.data.domain.Result;
 import com.weiyi.service.VipService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
