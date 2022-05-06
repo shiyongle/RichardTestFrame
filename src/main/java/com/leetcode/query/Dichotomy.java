@@ -1,4 +1,4 @@
-package com.leetcode;
+package com.leetcode.query;
 
 /**
  * 二分法查询
