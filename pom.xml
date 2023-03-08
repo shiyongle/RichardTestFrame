@@ -10,7 +10,7 @@
     <properties>
         <docker.image.prefix>RichardTestFrame</docker.image.prefix>
         <aspectj.version>1.8.10</aspectj.version>
-        <dubbo.version>2.7.1</dubbo.version>
+        <dubbo.version>2.7.21</dubbo.version>
     </properties>
 
     <parent>
