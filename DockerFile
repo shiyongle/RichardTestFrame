@@ -1,0 +1,22 @@
+FROM openjdk:8-jdk-slim
+LABEL maintainer=shiyl
+
+COPY target/testhome-1.0-SNAPSHOT.jar /app.jar
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+
+
+
+
+[shop-api-DockerFile demo
+FROM harbor.nroad.com.cn/bas/openjdk:17-jdk
+
+RUN mkdir -p /maven
+WORKDIR /maven
+
+COPY ./target/we-shop-api*.jar ./we-shop-api.jar
+
+EXPOSE 8112
+
+CMD java --add-opens java.base/java.lang=ALL-UNNAMED -jar $JAVA_OPTS -Dlog4j2.formatMsgNoLookups=true  -Duser.timezone='Asia/Shanghai' -Djava.security.egd=file:/dev/./urandom  we-shop-api.jar]
